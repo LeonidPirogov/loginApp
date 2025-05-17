@@ -9,6 +9,13 @@ import UIKit
 
 final class ViewController: UIViewController {
 
+    
+    @IBOutlet var usernameTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var forgotUsernameButton: UIButton!
+    @IBOutlet var forgotPasswordButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
