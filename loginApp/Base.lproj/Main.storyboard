@@ -37,6 +37,9 @@
                                         <state key="normal" title="Log In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="7yy-QN-WzD"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="mue-fD-alV">
                                         <rect key="frame" x="0.0" y="143" width="323" height="15.666666666666657"/>
@@ -48,6 +51,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="13"/>
                                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="forgotUsernameButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="wx9-fx-vM7"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAE-p1-Q3r">
                                                 <rect key="frame" x="167.66666666666663" y="0.0" width="155.33333333333337" height="15.666666666666666"/>
@@ -57,6 +63,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="13"/>
                                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="forgotPasswordButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="kLI-le-S3k"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
