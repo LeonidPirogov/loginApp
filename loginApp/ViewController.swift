@@ -18,6 +18,8 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 5
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     @IBAction func loginButtonAction() {
@@ -31,6 +33,10 @@ final class ViewController: UIViewController {
     
     @IBAction func forgotPasswordButtonAction() {
         showAlert(withTitle: "Oops!", andMessage: "Your password is 111 🤫")
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     private func showAlert(withTitle title: String, andMessage message: String) {
