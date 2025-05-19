@@ -11,12 +11,13 @@ final class HomeViewController: UIViewController {
     
     @IBOutlet var nameLabel: UILabel!
     
-    var nameLabelTF: String!
+    var userName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundColor()
-        nameLabel.text = nameLabelTF
+        nameLabel.text = "Welcome, \(userName ?? "User")!"
+        
     }
     
     private func setBackgroundColor() {

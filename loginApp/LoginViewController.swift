@@ -13,29 +13,34 @@ final class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
     
-    private let correctUsername = "Leonid"
-    private let correctPassword = "111"
+    private let user = "Leonid"
+    private let password = "111"
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let homeVC = segue.destination as? HomeViewController
+        homeVC?.userName = user 
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard usernameTextField.text == user, passwordTextField.text == password else {
+            showAlert(
+                withTitle: "Invalid login or password",
+                andMessage: "Please, enter correct login and password") {
+                    self.passwordTextField.text = ""
+                }
+            return false
+        }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 5
-        setupTapGesture()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let homeVC = segue.destination as? HomeViewController
-        homeVC?.nameLabelTF = "Welcome, \(usernameTextField.text ?? "User")!"
-    }
-
-    @IBAction func loginButtonAction() {
-        guard isValidCredentials() else {
-            showAlertInvalidCredentials(
-                withTitle: "Invalid login or password",
-                andMessage: "Please, enter correct login and password"
-                
-            )
-            return
-        }
     }
     
     @IBAction func forgotUsernameButtonAction() {
@@ -51,30 +56,10 @@ final class LoginViewController: UIViewController {
         passwordTextField.text = ""
     }
     
-    private func isValidCredentials() -> Bool {
-        usernameTextField.text == correctUsername && passwordTextField.text == correctPassword
-    }
-    
-    private func setupTapGesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    private func showAlert(withTitle title: String, andMessage message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
-    }
-    
-    private func showAlertInvalidCredentials(withTitle title: String, andMessage message: String) {
+    private func showAlert(withTitle title: String, andMessage message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.passwordTextField.text = ""
+            completion?()
         }
         alert.addAction(okAction)
         present(alert, animated: true)
